@@ -1,0 +1,67 @@
+services:
+  web-dev:
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
+    container_name: web-dev
+    command: sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0"
+    ports:
+      - 8000:8000
+    env_file:
+      - .env.dev
+    environment:
+      - ENVIRONMENT=dev
+    depends_on:
+      - postgres-dev
+    profiles:
+      - dev
+    networks:
+      - dev
+
+  postgres-dev:
+    image: postgres:15
+    container_name: postgres-dev
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - .env.dev
+    profiles:
+      - dev
+    networks:
+      - dev
+
+  web-test:
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
+    container_name: web-test
+    command: sh -c "alembic upgrade head && pytest"
+    ports:
+      - 8000:8000
+    env_file:
+      - .env.test
+    environment:
+      - ENVIRONMENT=test
+    depends_on:
+      - postgres-test
+    profiles:
+      - test
+    networks:
+      - test
+
+  postgres-test:
+    image: postgres:15
+    container_name: postgres-test
+    env_file:
+      - .env.test
+    profiles:
+      - test
+    networks:
+      - test
+
+volumes:
+  postgres_data:
+
+networks:
+  dev:
+  test:
