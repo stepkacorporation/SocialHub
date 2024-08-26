@@ -97,7 +97,6 @@ class TestUpdateSocialProfile:
         assert response.status_code == status.HTTP_200_OK
 
         updated_profile = SocialProfileResponse(**response.json())
-        print(updated_profile)
         assert updated_profile.platform == update_data['platform']
         assert str(updated_profile.profile_url) == update_data['profile_url']
         assert updated_profile.profile_type == update_data['profile_type']
