@@ -23,6 +23,7 @@ COPY app app
 ADD alembic.ini .
 COPY tests tests
 ADD pytest.ini .
+COPY scripts/wait-for-it.sh scripts/wait-for-it.sh
 
 RUN chown -R socialhub:socialhub .
 
