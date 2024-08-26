@@ -55,6 +55,12 @@ POSTGRES_PASSWORD=your_posgres_password
 POSTGRES_DB=socialhub
 POSTGRES_HOST=postgres-dev
 POSTGRES_PORT=5432
+
+SECRET_KEY_ACCESS=your_secret_key_access
+SECRET_KEY_REFRESH=your_secret_key_refresh
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+REFRESH_TOKEN_EXPIRE_DAYS=7
 ```
 
 Replace the placeholders with your PostgreSQL credentials.
@@ -69,6 +75,12 @@ POSTGRES_PASSWORD=your_posgres_password
 POSTGRES_DB=test_socialhub
 POSTGRES_HOST=postgres-test
 POSTGRES_PORT=5432
+
+SECRET_KEY_ACCESS=your_secret_key_access
+SECRET_KEY_REFRESH=your_secret_key_refresh
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+REFRESH_TOKEN_EXPIRE_DAYS=7
 ```
    
 ## Running the Application
