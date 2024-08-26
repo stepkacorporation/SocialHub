@@ -35,7 +35,7 @@ services:
       context: .
       dockerfile: ./app/Dockerfile
     container_name: web-test
-    command: sh -c "alembic upgrade head && pytest"
+    command: sh -c "./scripts/wait-for-it.sh postgres:5432 -- alembic upgrade head && pytest"
     ports:
       - 8000:8000
     env_file:
